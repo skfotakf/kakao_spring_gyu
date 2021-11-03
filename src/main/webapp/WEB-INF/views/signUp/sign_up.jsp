@@ -69,7 +69,7 @@
                      	<span class="msg2">비밀번호가 일치하지 않습니다.</span>
                      </div>
                      <div class="confirm_btn">
-                         <button type="button" class="btn_g">다음</button>
+                         <button type="button" class="btn_g">다음은 무엇일까요??</button>
                      </div>
 
                 </div>
