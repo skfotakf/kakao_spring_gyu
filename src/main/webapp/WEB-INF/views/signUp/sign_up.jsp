@@ -30,8 +30,7 @@
                         </div>
                     </div>
                     <div class="item_msg">
-                    	<span class="msg1">필수 항목입니다.</span>
-                    	<span class="msg2"><span id="false_email"></span>(은)는 이미 존재하는 아이디입니다.</span>
+                    	<span class="errorMsg"></span>
                     </div>
                     <div class="confirm_btn">
                         <button type="button" class="btn_g">다음</button>
@@ -44,34 +43,66 @@
                     <h2>카카오계정 가입을 위해<br>
                         비밀번호를 입력해 주세요.</h2>
                     <div class="item_tf">
-                        <input type="password" class="item_ip" name="password" placeholder="비밀번호 입력" autofocus="autofocus">
+                        <input type="password" class="item_ip" placeholder="비밀번호 입력" autofocus="autofocus">
                     </div>
                     <div class="item_msg">
-                    	<span class="msg1">필수 항목입니다.</span>
-                    	<span class="msg2"></span>
+                    	<span class="errorMsg"></span>
                     </div>
                     <div class="confirm_btn">
                         <button type="button" class="btn_g">다음</button>
                     </div>
                 </div>
                  <div class="warp_form">
-
                      <div class="navigation_wrap">
                          <progress class="bar_navigation" value="60" max="100"></progress>
                      </div>
                      <h2>카카오계정 가입을 위해<br>
                          비밀번호를 확인해 주세요.</h2>
                      <div class="item_tf">
-                         <input type="password" class="item_ip" name="repassword" placeholder="비밀번호 확인" autofocus="autofocus">
+                         <input type="password" class="item_ip" placeholder="비밀번호 확인" autofocus="autofocus">
                      </div>
                      <div class="item_msg">
-                     	<span class="msg1">필수 항목입니다.</span>
-                     	<span class="msg2">비밀번호가 일치하지 않습니다.</span>
+                     	<span class="errorMsg"></span>
                      </div>
                      <div class="confirm_btn">
-                         <button type="button" class="btn_g">다음은 무엇일까요??</button>
+                         <button type="button" class="btn_g">다음</button>
                      </div>
-
+                </div>
+                <div class="warp_form">
+                  	<div class="navigation_wrap">
+                        <progress class="bar_navigation" value="80" max="100"></progress>
+                    </div>
+                    <h2>카카오계정 가입을 위해<br>
+                        이름을 입력해 주세요.</h2>
+                    <div class="item_tf">
+                        <input type="text" class="item_ip" placeholder="이름 입력" autofocus="autofocus">
+                    </div>
+                    <div class="item_msg">
+                    	<span class="errorMsg"></span>
+                    </div>
+                    <div class="confirm_btn">
+                        <button type="button" class="btn_g">다음</button>
+                    </div>
+                </div>
+                <div class="warp_form">
+                    <div class="navigation_wrap">
+                        <progress class="bar_navigation" value="100" max="100"></progress>
+                    </div>
+                    <h2>카카오계정 가입을 위해<br>
+                        휴대폰 인증을 진행해 주세요.</h2>
+                    <div class="item_tf">
+                        <input type="tel" class="item_ip" placeholder="전화번호 입력" autofocus="autofocus">
+                        <div class="util_tf">
+                            <button type="button" class="button_round">인증요청</button>
+                        </div>
+                    </div>
+                    <div class="item_msg">
+                    	<span class="errorMsg"></span>
+                    	<span class="successMsg"></span>
+                    </div>
+                    <div class="confirm_btn">
+                        <button type="button" class="btn_g">마침</button>
+                    </div>
                 </div>
             </main>
             <jsp:include page="../include/sign_up_include/sign_up_footer.jsp"></jsp:include>

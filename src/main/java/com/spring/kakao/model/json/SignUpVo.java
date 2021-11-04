@@ -4,9 +4,11 @@ public class SignUpVo {
 
 	private String signUpEmail;
 	private int emailFlag;
-	private String signUppassword;
+	private String signUpPassword;
 	private String signUpName;
 	private String signUpPhone;
+	private int phoneFlag;
+	
 	public String getSignUpEmail() {
 		return signUpEmail;
 	}
@@ -19,11 +21,11 @@ public class SignUpVo {
 	public void setEmailFlag(int emailFlag) {
 		this.emailFlag = emailFlag;
 	}
-	public String getSignUppassword() {
-		return signUppassword;
+	public String getSignUpPassword() {
+		return signUpPassword;
 	}
-	public void setSignUppassword(String signUppassword) {
-		this.signUppassword = signUppassword;
+	public void setSignUpPassword(String signUpPassword) {
+		this.signUpPassword = signUpPassword;
 	}
 	public String getSignUpName() {
 		return signUpName;
@@ -37,10 +39,17 @@ public class SignUpVo {
 	public void setSignUpPhone(String signUpPhone) {
 		this.signUpPhone = signUpPhone;
 	}
+	public int getPhoneFlag() {
+		return phoneFlag;
+	}
+	public void setPhoneFlag(int phoneFlag) {
+		this.phoneFlag = phoneFlag;
+	}
 	@Override
 	public String toString() {
-		return "SignUpVo [signUpEmail=" + signUpEmail + ", emailFlag=" + emailFlag + ", signUppassword="
-				+ signUppassword + ", signUpName=" + signUpName + ", signUpPhone=" + signUpPhone + "]";
+		return "SignUpVo [signUpEmail=" + signUpEmail + ", emailFlag=" + emailFlag + ", signUpPassword="
+				+ signUpPassword + ", signUpName=" + signUpName + ", signUpPhone=" + signUpPhone + ", phoneFlag="
+				+ phoneFlag + "]";
 	}
 	
 	
