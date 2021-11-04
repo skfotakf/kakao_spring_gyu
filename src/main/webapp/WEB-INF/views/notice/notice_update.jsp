@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <jsp:include page="include/index_include/index_header.jsp"></jsp:include>
+        <jsp:include page="../include/index_include/index_header.jsp"></jsp:include>
         <main>
             <div class="notice_insert_header">
                 공지사항 글 작성

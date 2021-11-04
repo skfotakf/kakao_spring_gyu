@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="include/index_include/index_header.jsp"></jsp:include>
+		<jsp:include page="../include/index_include/index_header.jsp"></jsp:include>
         <main>
             <div class="notice_dtl_main">
             	<input type="hidden" name="notice_code" id="notice_code" value="${notice.notice_code }">

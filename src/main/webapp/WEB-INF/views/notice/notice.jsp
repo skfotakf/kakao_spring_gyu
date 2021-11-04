@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="container">
-        <jsp:include page="include/index_include/index_header.jsp"></jsp:include>
+        <jsp:include page="../include/index_include/index_header.jsp"></jsp:include>
         <main>
             <div class="notice_header">
                 <ul>
@@ -35,29 +35,37 @@
 	                        <li class="notice_title">${notice.notice_title }</li>
 	                        <li class="notice_writer">${notice.notice_writer }</li>
 	                        <li class="notice_date">${notice.notice_date }</li>
-	                        <li class="notice_count">${notice.notice_count }</li> 
+	                        <li class="notice_count">${notice.notice_count }</li>
 	                    </ul>
 	                </a>
             	</c:forEach>
                 
             </div>
+            
             <div class="notice_footer">
+            	
             	<c:set var="admin_id" value="admin"></c:set>
             	<c:set var="admin_user" value="${login_user.id }"></c:set>
-            	<c:if test="${admin_id eq admin_user }">
-            		<div class="notice_insert_div">
-            			<button type="button" class="notice_insert_button" onclick="location.href='notice-insert'">글쓰기</button>
-            		</div>
-            	</c:if>
+            	
+           		<c:if test="${admin_id eq admin_user }">
+           			<div class="notice_insert_div">
+	            		<button type="button" class="notice_insert_button" onclick="location.href='notice-insert'">글쓰기</button>
+	            	</div>
+           		</c:if>
+            	
+            	
 				<ul>
+					<a href="notice?pageNumber=${noticeBean.startPage - 1 eq 0 ? 1 : noticeBean.pageNumber - 1 }"><li><i class="fas fa-arrow-circle-left"></i></li></a>
 					
-					<a href="notice?notice-page=${pages[1] -1 eq 0? 1 : pages[1] -1}"><li><i class="fas fa-arrow-circle-left"></i></li></a>
-					<c:forEach var="i" begin="${pages[1] }" end="${pages[2] }">
-						<a href="notice?notice-page=${i }"><li>${i }</li></a>
+					<c:forEach var="i" begin="${noticeBean.startPage }" end="${noticeBean.endPage }">
+						<a href="notice?pageNumber=${i }"><li>${i }</li></a>
 					</c:forEach>
-					<a href="notice?notice-page=${pages[2] eq pages[0] ? pages[2] : pages[2]+1 }"><li><i class="fas fa-arrow-circle-right"></i></li></a>
+					
+					<a href="notice?pageNumber=${noticeBean.totalPage eq noticeBean.pageNumber ? noticeBean.totalPage : noticeBean.pageNumber + 1 }"><li><i class="fas fa-arrow-circle-right"></i></li></a>
 				</ul>
+				
             </div>
+            
         </main>
         <footer>
 
