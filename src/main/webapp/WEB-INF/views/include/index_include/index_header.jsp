@@ -1,13 +1,12 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>
     <div class="nav">
-        <a href="" class="brand_logo"><h1>kakao</h1></a>
+        <a href="index" class="brand_logo"><h1>kakao</h1></a>
         <ul class="nav_item">
             <a href=""><li>카카오</li></a>
-            <a href="notice"><li>뉴스</li></a>
+            <a href="notice?pageNumber=1"><li>뉴스</li></a>
             <a href=""><li>기술과 서비스</li></a>
             <a href=""><li>약속과 책임</li></a>
         </ul>

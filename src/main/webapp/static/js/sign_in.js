@@ -1,5 +1,6 @@
 const item_ip = document.querySelectorAll('.item_ip');
 const btn_login = document.querySelector('.btn_login');
+const item_cb = document.querySelector('.item_cb');
 
 var signInData = {
 	user_email: '',
@@ -34,6 +35,13 @@ function messageService(msgText, msgFlag) {
 	}
 }
 
+item_cb.onclick = () =>{
+	if(item_cb.value == 'off'){
+		item_cb.value = 'on';
+	} else {
+		item_cb.value = 'off';
+	}	
+}
 
 item_ip[0].onclick = () => {
     const info_tip = document.querySelector('.info_tip');
@@ -57,21 +65,17 @@ item_ip[0].onblur = () => {
     }
 }
 
-
 function emptyCheck() {
 	if(item_ip[0].value.length == 0) {
 		let msgText = '이메일을 입력해 주세요.';
 		messageService(msgText, 0);
 		return false;
-		
 	} else if(item_ip[1].value.length == 0) {
 		let msgText = '비밀번호를 입력해 주세요.';
 		messageService(msgText, 1);
 		return false;
-	
 	} else {
 		return true;
-	
 	}
 }
 
@@ -84,7 +88,6 @@ function signInSubmit() {
 		dataType: "text",
 		success: function(data){
 			signInData = JSON.parse(data);
-			
 			// 이메일이 존재하지 않음
 			if(signInData.signInFlag == 0) {
 				let textMsg = '존재하지 않는 이메일입니다.';
@@ -104,7 +107,6 @@ function signInSubmit() {
 		error: function(){
 			alert('비동기 처리 오류!');
 		}
-		
 	})
 }
 
@@ -127,7 +129,6 @@ item_ip[0].onkeypress = () =>{
 	}
 }
 
-
 item_ip[1].onkeypress = () =>{
 	if(window.event.keyCode == 13) {
 		window.event.preventDefault();
@@ -136,7 +137,6 @@ item_ip[1].onkeypress = () =>{
 }
 
 btn_login.onclick = () =>{
-	
 	signInService();
 	
 }

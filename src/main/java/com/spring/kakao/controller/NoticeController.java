@@ -45,6 +45,8 @@ public class NoticeController {
 	
 	@RequestMapping(value = "notice-insert", method = RequestMethod.GET)
 	public String noticeInsertIndex(Model model, HttpServletRequest request) {
+		
 		return "notice/notice_insert";
 	}
+	
 }

@@ -58,5 +58,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeList;
 	}
 
+	@Override
+	public void fileUpload(NoticeDto noticeDto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

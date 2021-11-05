@@ -42,15 +42,14 @@ public class SignInController {
 		}
 		return "signIn/sign_in";
 	}
-	
-	
+
 	
 	@ResponseBody
 	@RequestMapping(value = "sign-in", method = RequestMethod.POST)
 	public Object signIn(@RequestBody SignInVo signInVo, HttpServletRequest request, HttpServletResponse response) {
 		
 		signInVo.setSignInFlag(userService.signIn(signInVo));
-		
+		System.out.println(signInVo);
 		if(signInVo.getSignInFlag() == 2) {
 			
 			HttpSession session = request.getSession();

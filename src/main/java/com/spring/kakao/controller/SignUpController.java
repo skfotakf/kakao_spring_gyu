@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +25,7 @@ public class SignUpController {
 	private UserService userService;
 	
 	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
-	public String SignUpIndex(HttpServletRequest request) {
+	public String signUpIndex(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
@@ -48,7 +49,7 @@ public class SignUpController {
 		SignUpVo signUpVo = new SignUpVo();
 		signUpVo.setSignUpEmail(signUpEmail);
 		signUpVo.setEmailFlag(userService.signUpEmailCheck(signUpEmail));
-		
+		System.out.println(signUpVo);
 		return signUpVo;
 	}
 	
