@@ -6,27 +6,21 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.kakao.model.dto.UserDto;
-import com.spring.kakao.service.NoticeService;
 import com.spring.kakao.service.UserService;
 
 @Controller
-public class NoticeController {
+public class IndexController {
 
-	@Autowired
-	private NoticeService noticeService;
-	
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-	public ModelAndView noticeIndex(@RequestParam String pageNumber, HttpServletRequest request) {
+	@RequestMapping(value = "index", method = RequestMethod.GET)
+	public ModelAndView index(HttpServletRequest request) {
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
 			for(Cookie c : cookies) {
@@ -37,14 +31,6 @@ public class NoticeController {
 				}
 			}
 		}
-		ModelAndView mav = new ModelAndView("notice/notice");
-		mav.addObject("noticeList", noticeService.getNoticeList(noticeService.parseIntPageNumber(pageNumber)));
-		mav.addObject("noticeBean", noticeService.getNoticeBean());
-		return mav;
-	}
-	
-	@RequestMapping(value = "notice-insert", method = RequestMethod.GET)
-	public String noticeInsertIndex(Model model, HttpServletRequest request) {
-		return "notice/notice_insert";
+		return new ModelAndView("index");
 	}
 }

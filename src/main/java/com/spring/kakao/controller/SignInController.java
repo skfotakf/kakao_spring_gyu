@@ -2,29 +2,30 @@ package com.spring.kakao.controller;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.kakao.model.dto.UserDto;
-import com.spring.kakao.model.json.SignUpVo;
+import com.spring.kakao.model.json.SignInVo;
 import com.spring.kakao.service.UserService;
 
 @Controller
-public class SignUpController {
-	
+public class SignInController {
+
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/sign-up", method = RequestMethod.GET)
-	public String SignUpIndex(HttpServletRequest request) {
+	@RequestMapping(value = "sign-in", method = RequestMethod.GET)
+	public String signInIndex(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
@@ -39,30 +40,28 @@ public class SignUpController {
 		if(session.getAttribute("login_user") != null) {
 			return "redirect:index";
 		}
-		return "signUp/sign_up";
+		return "signIn/sign_in";
 	}
 	
+	
+	
 	@ResponseBody
-	@RequestMapping(value = "/sign-up-emailCheck", method = RequestMethod.POST)
-	public Object signUpEmailCheck(@RequestParam String signUpEmail) {
-		SignUpVo signUpVo = new SignUpVo();
-		signUpVo.setSignUpEmail(signUpEmail);
-		signUpVo.setEmailFlag(userService.signUpEmailCheck(signUpEmail));
+	@RequestMapping(value = "sign-in", method = RequestMethod.POST)
+	public Object signIn(@RequestBody SignInVo signInVo, HttpServletRequest request, HttpServletResponse response) {
 		
-		return signUpVo;
+		signInVo.setSignInFlag(userService.signIn(signInVo));
+		
+		if(signInVo.getSignInFlag() == 2) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("login_user", userService.getUser(signInVo.getUser_email()));
+			if(signInVo.getSignIncb().equals("on")) {
+				Cookie cookie = userService.setUserCookie(signInVo.getUser_email());
+				response.addCookie(cookie);
+			}
+			
+		}
+		
+		return signInVo;
 	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/phone-number-check", method = RequestMethod.POST)
-	public Object signUpPhoneCheck(@RequestBody SignUpVo signUpVo) {
-		signUpVo.setPhoneFlag(userService.signUpPhoneCheck(signUpVo));
-		return signUpVo;
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/sign-up", method = RequestMethod.POST)
-	public String signUp(@RequestBody SignUpVo signUpVo) {
-		return Integer.toString(userService.signUp(signUpVo));
-	}
-	
 }
