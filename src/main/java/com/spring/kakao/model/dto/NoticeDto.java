@@ -10,7 +10,6 @@ public class NoticeDto {
 	private String notice_writer;
 	private String notice_date;
 	private int notice_count;
-	private MultipartFile[] file;
 	private String notice_content;
 	
 	public int getNotice_code() {
@@ -43,24 +42,21 @@ public class NoticeDto {
 	public void setNotice_count(int notice_count) {
 		this.notice_count = notice_count;
 	}
-	public MultipartFile[] getFile() {
-		return file;
-	}
-	public void setFile(MultipartFile[] file) {
-		this.file = file;
-	}
+
 	public String getNotice_content() {
 		return notice_content;
 	}
 	public void setNotice_content(String notice_content) {
 		this.notice_content = notice_content;
 	}
+	
 	@Override
 	public String toString() {
 		return "NoticeDto [notice_code=" + notice_code + ", notice_title=" + notice_title + ", notice_writer="
-				+ notice_writer + ", notice_date=" + notice_date + ", notice_count=" + notice_count + ", file="
-				+ Arrays.toString(file) + ", notice_content=" + notice_content + "]";
+				+ notice_writer + ", notice_date=" + notice_date + ", notice_count=" + notice_count
+				+ ", notice_content=" + notice_content + "]";
 	}
+
 	
 	
 }
