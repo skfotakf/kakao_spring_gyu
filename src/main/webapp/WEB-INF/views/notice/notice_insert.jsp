@@ -20,7 +20,6 @@
             <div class="notice_insert_header">
                 공지사항 글 작성
             </div>
-
             <div class="notice_insert_main">
                <form id="insert_form">
 	               	<ul class="ni_title_ul">
@@ -43,16 +42,12 @@
 	                        <textarea class="notice_content" name="notice_content"></textarea>
 	                    </li>
 	                </ul>
-	
 	                <button type="button" class="notice_submit">작성완료</button>
 	                <button type="reset">다시쓰기</button>
-                
                </form>
-                
             </div>
         </main>
         <footer>
-
         </footer>
     </div>
     <script src="https://kit.fontawesome.com/c3df4d7d1c.js" crossorigin="anonymous"></script>

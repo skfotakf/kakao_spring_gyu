@@ -1,20 +1,30 @@
 package com.spring.kakao.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.kakao.model.beans.NoticeBean;
 import com.spring.kakao.model.dao.NoticeDao;
 import com.spring.kakao.model.dto.NoticeDto;
+import com.spring.kakao.model.dto.NoticeInsertDto;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
 	private NoticeDao noticeDao;
+	
+	@Autowired
+	private ServletContext context;
 	
 	private NoticeBean noticeBean;
 	private List<NoticeDto> noticeListAll;
@@ -59,10 +69,43 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public void fileUpload(NoticeDto noticeDto) {
-		// TODO Auto-generated method stub
+	public NoticeDto fileUpload(NoticeInsertDto noticeInsertDto) {
 		
+		MultipartFile[] multipartFiles = noticeInsertDto.getNotice_file();
+		String filePath = context.getRealPath("/static/upload");
+		
+		StringBuilder originName = new StringBuilder();
+		StringBuilder tempName = new StringBuilder();
+		
+		for(MultipartFile multipartFile : multipartFiles) {
+			String originFile = multipartFile.getOriginalFilename();
+			String originFileExtension = originFile.substring(originFile.lastIndexOf("."));
+			String tempFile = UUID.randomUUID().toString().replaceAll("-", "") + originFileExtension;
+			
+			originName.append(originFile);
+			originName.append(",");
+			tempName.append(tempFile);
+			tempName.append(",");
+			
+			File file = new File(filePath, tempFile);
+			if(!file.exists()) {
+				file.mkdir();
+				file.mkdirs();
+			}
+			
+			try {
+				multipartFile.transferTo(file);
+			} catch (IllegalStateException | IOException e) {			
+				e.printStackTrace();
+			}
+		}		
+		originName.delete(originName.length()-1, originName.length());
+		tempName.delete(tempName.length()-1, tempName.length());
+		
+		NoticeDto noticeDto = new NoticeDto();
+		noticeDto.setOriginFileNames(originName.toString());
+		noticeDto.setTempFileNames(tempName.toString());
+		
+		return noticeDto;	
 	}
-
-	
 }

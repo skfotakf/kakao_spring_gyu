@@ -1,8 +1,6 @@
 const notice_submit = document.querySelector(".notice_submit");
 const insert_form = document.querySelector('#insert_form');
 
-
-
 function noticeInsert(){
 	
 	let formData = new FormData(insert_form);
@@ -36,6 +34,5 @@ notice_submit.onclick = () => {
 		alert("공지사항 내용을 입력해주세요");
 	} else {
 		noticeInsert();
-
 	}
 }
