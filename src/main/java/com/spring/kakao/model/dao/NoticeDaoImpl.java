@@ -20,4 +20,10 @@ public class NoticeDaoImpl implements NoticeDao {
 	public List<NoticeDto> getNoticeListAll() {
 		return session.selectList(NAME_SPACE + "getNoticeListAll");
 	}
+
+	@Override
+	public int getNoticeMaxCode() {
+		return session.selectOne(NAME_SPACE + "getNoticeMaxCode");
+	}
+	
 }

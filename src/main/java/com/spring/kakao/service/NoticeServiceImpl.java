@@ -108,4 +108,20 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return noticeDto;	
 	}
+
+	@Override
+	public int noticeInsert(NoticeInsertDto noticeInsertDto) {
+		NoticeDto noticeDto = fileUpload(noticeInsertDto);
+		noticeDto.getNotice_code();
+		noticeDto.setNotice_title(noticeInsertDto.getNotice_title());
+		noticeDto.setNotice_writer(noticeInsertDto.getNotice_writer());
+		noticeDto.setNotice_content(noticeInsertDto.getNotice_content());
+		return 0;
+	}
+
+	@Override
+	public int getNoticeMaxCode() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
